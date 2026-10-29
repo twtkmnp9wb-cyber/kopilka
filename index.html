@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Копилка</title>
+    <meta
+      name="description"
+      content="Копилка — доходы и расходы на графиках, цели с дедлайном, рекомендуемый бюджет и прогноз накоплений."
+    />
+    <meta name="theme-color" content="#0d0d0f" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Копилка" />
+    <link rel="icon" type="image/svg+xml" href="./icon.svg" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <script>
+      // Тема до первой отрисовки — без вспышки неправильного фона.
+      try {
+        var theme = localStorage.getItem('kopilka:theme');
+        if (theme === 'light' || theme === 'system') document.documentElement.dataset.theme = theme;
+      } catch (e) {}
+    </script>
+    <script type="module" crossorigin src="./assets/index-BlZEtr9X.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Cc5l9EIp.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
