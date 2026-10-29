@@ -1,0 +1,93 @@
+.form {
+  display: grid;
+  gap: 18px;
+}
+
+.amount {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 6px 0;
+}
+
+.section {
+  display: grid;
+  gap: 10px;
+}
+
+.sectionLabel {
+  font-size: 13px;
+  font-weight: 550;
+  color: var(--text-2);
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+  gap: 6px;
+}
+
+.category {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 10px 4px 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--text-2);
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: center;
+  transition:
+    background-color var(--dur-fast),
+    border-color var(--dur-fast);
+}
+
+.category:hover {
+  background: var(--surface-2);
+}
+
+.selected {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-2);
+  font-size: 14px;
+}
+
+.toggle input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 10px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  padding-top: 4px;
+}

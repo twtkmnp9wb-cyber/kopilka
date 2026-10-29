@@ -1,0 +1,112 @@
+.grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    gap: 18px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+
+.subheading {
+  margin: 4px 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.subheading:not(:first-of-type) {
+  margin-top: 18px;
+}
+
+.list {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 8px;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  text-align: left;
+}
+
+.row:hover {
+  background: var(--surface-2);
+}
+
+.inactive {
+  opacity: 0.5;
+}
+
+.rowText {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+}
+
+.rowTitle {
+  font-weight: 550;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rowHint {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.rowAmount {
+  font-weight: 650;
+}
+
+.income {
+  color: var(--income-text);
+}
+
+.categoryItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.cushion {
+  display: grid;
+  gap: 10px;
+}
+
+.cushion input {
+  accent-color: var(--accent);
+}
+
+.cushionHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-weight: 550;
+}
+
+.account {
+  color: var(--text-2);
+  margin-bottom: 14px;
+}

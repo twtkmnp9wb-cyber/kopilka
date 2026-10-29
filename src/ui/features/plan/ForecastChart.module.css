@@ -1,0 +1,60 @@
+.controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-bottom: 16px;
+}
+
+.sliderLabel {
+  color: var(--text-2);
+  font-size: 14px;
+  min-width: 132px;
+}
+
+.sliderLabel b {
+  color: var(--text);
+}
+
+.slider {
+  flex: 1;
+  min-width: 180px;
+  accent-color: var(--accent);
+}
+
+.headline {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 14px;
+}
+
+.metricLabel {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.metric {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.negative {
+  color: var(--danger-text);
+}
+
+.milestones {
+  display: grid;
+  gap: 6px;
+  margin: 14px 0 0;
+  padding: 14px 0 0;
+  border-top: 1px solid var(--border);
+  list-style: none;
+  color: var(--text-2);
+  font-size: 14px;
+}
+
+.milestones b {
+  color: var(--text);
+  font-weight: 600;
+}

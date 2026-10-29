@@ -1,0 +1,107 @@
+.form {
+  display: grid;
+  gap: 18px;
+}
+
+.amount {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 550;
+  color: var(--text-2);
+}
+
+.section {
+  display: grid;
+  gap: 8px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 10px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.toggle {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--text-2);
+  font-size: 14px;
+}
+
+.toggle input {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  accent-color: var(--accent);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.preview {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+
+.previewName {
+  font-weight: 650;
+}
+
+.swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.swatch {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 0;
+  box-shadow: 0 0 0 2px var(--surface);
+  transition: box-shadow var(--dur-fast);
+}
+
+.selectedSwatch {
+  box-shadow:
+    0 0 0 2px var(--surface),
+    0 0 0 4px var(--text);
+}
+
+.icons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+  gap: 6px;
+}
+
+.iconButton {
+  display: grid;
+  place-items: center;
+  height: 44px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--text-2);
+}
+
+.selectedIcon {
+  border-color: var(--accent);
+  color: var(--text);
+  background: var(--accent-soft);
+}

@@ -1,0 +1,96 @@
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+@media (max-width: 560px) {
+  .tiles {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tile {
+    grid-template-columns: minmax(0, 1fr) 96px;
+    grid-template-areas:
+      'label spark'
+      'value spark'
+      'delta spark';
+  }
+
+  .label {
+    grid-area: label;
+  }
+
+  .value {
+    grid-area: value;
+  }
+
+  .tile > :nth-child(3) {
+    grid-area: delta;
+  }
+
+  .spark {
+    grid-area: spark;
+    align-self: center;
+  }
+}
+
+.tile {
+  display: grid;
+  gap: 4px;
+  padding: 16px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  min-width: 0;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-2);
+  font-size: 13px;
+  font-weight: 550;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.value {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.good {
+  color: var(--good-text);
+}
+
+.bad {
+  color: var(--danger-text);
+}
+
+.deltaMuted {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 450;
+}
+
+.spark {
+  margin-top: 6px;
+}

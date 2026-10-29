@@ -1,0 +1,59 @@
+.all {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.body {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.info {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.name {
+  font-weight: 650;
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sum {
+  color: var(--text-2);
+}
+
+.sum b {
+  color: var(--text);
+}
+
+.deadline {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.due {
+  color: var(--text-2);
+  font-size: 14px;
+}
+
+.due b {
+  color: var(--text);
+}

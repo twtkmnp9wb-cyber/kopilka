@@ -1,0 +1,175 @@
+.page {
+  display: grid;
+  gap: 16px;
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: var(--text-2);
+}
+
+.summary b {
+  color: var(--text);
+}
+
+.grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+}
+
+.card {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.top {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.titleBlock {
+  display: grid;
+  gap: 3px;
+  flex: 1;
+  min-width: 0;
+  justify-items: start;
+}
+
+.name {
+  font-size: 17px;
+  max-width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow-wrap: anywhere;
+}
+
+.deadline {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.menu {
+  display: flex;
+  margin: -6px -8px 0 0;
+}
+
+.badge {
+  white-space: nowrap;
+  margin-top: 4px;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.onTrack,
+.reached {
+  background: color-mix(in srgb, var(--good) 15%, transparent);
+  color: var(--good-text);
+}
+
+.behind {
+  background: color-mix(in srgb, var(--warning) 16%, transparent);
+  color: var(--warning-text);
+}
+
+.overdue {
+  background: color-mix(in srgb, var(--danger) 15%, transparent);
+  color: var(--danger-text);
+}
+
+.amounts {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  color: var(--muted);
+}
+
+.amounts b {
+  color: var(--text);
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+
+.percent {
+  margin-left: auto;
+  color: var(--text-2);
+  font-weight: 600;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.footLabel {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.footValue {
+  font-weight: 650;
+}
+
+.perMonth {
+  color: var(--muted);
+  font-weight: 450;
+  font-size: 13px;
+}
+
+.archive {
+  display: grid;
+  gap: 8px;
+}
+
+.archiveToggle {
+  justify-self: start;
+  border: 0;
+  background: transparent;
+  color: var(--text-2);
+  font-weight: 600;
+  padding: 6px 4px;
+}
+
+.archiveList {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.archiveRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px 6px 14px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text-2);
+}
+
+.archiveName {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

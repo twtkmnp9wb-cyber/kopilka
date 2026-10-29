@@ -1,0 +1,37 @@
+.track {
+  position: relative;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--fill) 16%, transparent);
+  overflow: hidden;
+}
+
+.thin {
+  height: 4px;
+}
+
+.bar {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--fill);
+  transform-origin: left center;
+  transition: transform 600ms var(--ease-out);
+}
+
+.ring {
+  position: relative;
+  flex: none;
+}
+
+.ringValue {
+  transition: stroke-dashoffset 700ms var(--ease-out);
+}
+
+.ringContent {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+}

@@ -1,0 +1,36 @@
+.stack {
+  display: grid;
+  gap: 10px;
+}
+
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--warning) 12%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--warning) 30%, transparent);
+}
+
+.icon {
+  flex: none;
+  color: var(--warning-text);
+  margin-top: 1px;
+}
+
+.emoji {
+  flex: none;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.title {
+  font-weight: 650;
+}
+
+.text {
+  margin-top: 2px;
+  color: var(--text-2);
+  font-size: 14px;
+}

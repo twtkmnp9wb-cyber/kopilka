@@ -1,0 +1,42 @@
+.form {
+  display: grid;
+  gap: 18px;
+}
+
+.amount {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+}
+
+.amountLabel,
+.label {
+  font-size: 13px;
+  font-weight: 550;
+  color: var(--text-2);
+}
+
+.section {
+  display: grid;
+  gap: 8px;
+}
+
+.emoji {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+  gap: 6px;
+}
+
+.emojiButton {
+  height: 44px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  font-size: 22px;
+  transition: border-color var(--dur-fast);
+}
+
+.selected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}

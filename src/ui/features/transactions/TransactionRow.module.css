@@ -1,0 +1,90 @@
+.item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+.delete {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 88px;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 2px;
+  border: 0;
+  background: var(--danger);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  text-align: left;
+  touch-action: pan-y;
+  transition:
+    transform var(--dur) var(--ease-out),
+    background-color var(--dur-fast);
+}
+
+.row:hover {
+  background: var(--surface-2);
+}
+
+.dragging {
+  transition: none;
+}
+
+.goalBadge {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--saving) 18%, transparent);
+  font-size: 19px;
+}
+
+.text {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-weight: 550;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.note {
+  color: var(--muted);
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.amount {
+  flex: none;
+  font-weight: 650;
+}
+
+.income {
+  color: var(--income-text);
+}
+
+.saving {
+  color: var(--accent-text);
+}

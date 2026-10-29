@@ -1,0 +1,159 @@
+/*
+ * Дизайн-токены. Компоненты обращаются только к ролям (--surface, --text, --income…),
+ * поэтому смена темы — это смена значений здесь и больше нигде.
+ * Тёмная тема — по умолчанию; светлая — по выбору или по системной настройке.
+ * Цвета серий графиков — валидированная CVD-безопасная палитра (свои шаги для каждой темы).
+ */
+:root {
+  color-scheme: dark;
+
+  --font-sans: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --radius-xl: 28px;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-fast: 150ms;
+  --dur: 220ms;
+
+  --tabbar-height: 64px;
+  --sidebar-width: 236px;
+
+  --bg: #0d0d0f;
+  --surface: #17171a;
+  --surface-2: #1f1f24;
+  --surface-3: #2a2a31;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --text: #f2f1ee;
+  --text-2: #c3c2b7;
+  --muted: #8b8a85;
+  --shadow-card: none;
+  --shadow-pop: 0 18px 48px rgba(0, 0, 0, 0.55);
+  --backdrop: rgba(0, 0, 0, 0.6);
+  --header-bg: rgba(13, 13, 15, 0.72);
+
+  --accent: #7c6ff0;
+  --accent-soft: rgba(144, 133, 233, 0.16);
+  --accent-text: #b4abf5;
+  --on-accent: #ffffff;
+
+  --income: #199e70;
+  --income-text: #3fcf95;
+  --expense: #d95926;
+  --expense-text: #ff8a5c;
+  --saving: #9085e9;
+
+  --good: #0ca30c;
+  --good-text: #3fcf6e;
+  --warning: #fab219;
+  --warning-text: #fbc04a;
+  --danger: #d03b3b;
+  --danger-text: #ff7676;
+
+  --grid: #2c2c2a;
+  --axis: #383835;
+
+  --cat-blue: #3987e5;
+  --cat-orange: #d95926;
+  --cat-aqua: #199e70;
+  --cat-yellow: #c98500;
+  --cat-magenta: #d55181;
+  --cat-green: #008300;
+  --cat-violet: #9085e9;
+  --cat-red: #e66767;
+  --cat-neutral: #6b6a66;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f6f5f2;
+  --surface: #ffffff;
+  --surface-2: #f0efec;
+  --surface-3: #e6e5e0;
+  --border: rgba(11, 11, 11, 0.08);
+  --border-strong: rgba(11, 11, 11, 0.16);
+  --text: #0b0b0b;
+  --text-2: #52514e;
+  --muted: #7a7974;
+  --shadow-card: 0 1px 2px rgba(11, 11, 11, 0.04), 0 8px 24px rgba(11, 11, 11, 0.06);
+  --shadow-pop: 0 18px 48px rgba(11, 11, 11, 0.18);
+  --backdrop: rgba(11, 11, 11, 0.36);
+  --header-bg: rgba(246, 245, 242, 0.78);
+
+  --accent: #6250d6;
+  --accent-soft: rgba(98, 80, 214, 0.1);
+  --accent-text: #4a3aa7;
+
+  --income: #1baf7a;
+  --income-text: #0b7a4f;
+  --expense: #eb6834;
+  --expense-text: #c4471a;
+  --saving: #6250d6;
+
+  --good-text: #006300;
+  --warning-text: #9a6700;
+  --danger-text: #b42323;
+
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+
+  --cat-blue: #2a78d6;
+  --cat-orange: #eb6834;
+  --cat-aqua: #1baf7a;
+  --cat-yellow: #eda100;
+  --cat-magenta: #e87ba4;
+  --cat-green: #008300;
+  --cat-violet: #6250d6;
+  --cat-red: #e34948;
+  --cat-neutral: #a8a7a1;
+}
+
+@media (prefers-color-scheme: light) {
+  :root[data-theme='system'] {
+    color-scheme: light;
+    --bg: #f6f5f2;
+    --surface: #ffffff;
+    --surface-2: #f0efec;
+    --surface-3: #e6e5e0;
+    --border: rgba(11, 11, 11, 0.08);
+    --border-strong: rgba(11, 11, 11, 0.16);
+    --text: #0b0b0b;
+    --text-2: #52514e;
+    --muted: #7a7974;
+    --shadow-card: 0 1px 2px rgba(11, 11, 11, 0.04), 0 8px 24px rgba(11, 11, 11, 0.06);
+    --shadow-pop: 0 18px 48px rgba(11, 11, 11, 0.18);
+    --backdrop: rgba(11, 11, 11, 0.36);
+    --header-bg: rgba(246, 245, 242, 0.78);
+
+    --accent: #6250d6;
+    --accent-soft: rgba(98, 80, 214, 0.1);
+    --accent-text: #4a3aa7;
+
+    --income: #1baf7a;
+    --income-text: #0b7a4f;
+    --expense: #eb6834;
+    --expense-text: #c4471a;
+    --saving: #6250d6;
+
+    --good-text: #006300;
+    --warning-text: #9a6700;
+    --danger-text: #b42323;
+
+    --grid: #e1e0d9;
+    --axis: #c3c2b7;
+
+    --cat-blue: #2a78d6;
+    --cat-orange: #eb6834;
+    --cat-aqua: #1baf7a;
+    --cat-yellow: #eda100;
+    --cat-magenta: #e87ba4;
+    --cat-green: #008300;
+    --cat-violet: #6250d6;
+    --cat-red: #e34948;
+    --cat-neutral: #a8a7a1;
+  }
+}

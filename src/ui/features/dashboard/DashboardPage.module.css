@@ -1,0 +1,49 @@
+.grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    'hero'
+    'tiles'
+    'goal'
+    'bars'
+    'donut';
+}
+
+.hero {
+  grid-area: hero;
+}
+
+.goal {
+  grid-area: goal;
+}
+
+.tiles {
+  grid-area: tiles;
+}
+
+.bars {
+  grid-area: bars;
+}
+
+.donut {
+  grid-area: donut;
+}
+
+.hero,
+.goal,
+.bars,
+.donut {
+  display: grid;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    gap: 18px;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    grid-template-areas:
+      'hero goal'
+      'tiles tiles'
+      'bars donut';
+  }
+}

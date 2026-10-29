@@ -1,0 +1,71 @@
+.tooltip {
+  min-width: 168px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-pop);
+  font-size: 13px;
+}
+
+.tooltipTitle {
+  margin-bottom: 6px;
+  color: var(--text);
+  font-weight: 650;
+}
+
+.tooltipRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0;
+}
+
+.tooltipLabel {
+  flex: 1;
+  color: var(--text-2);
+}
+
+.tooltipValue {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.tooltipFooter {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.swatch {
+  width: 10px;
+  height: 10px;
+  flex: none;
+  border-radius: 3px;
+  background: var(--swatch);
+}
+
+.swatchDashed {
+  width: 14px;
+  height: 0;
+  flex: none;
+  border-top: 2px dashed var(--swatch);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--text-2);
+  font-size: 13px;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

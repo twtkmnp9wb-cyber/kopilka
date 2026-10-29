@@ -1,0 +1,37 @@
+.group {
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-2);
+}
+
+.option {
+  flex: 1;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-2);
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast);
+}
+
+.md .option {
+  height: 38px;
+  padding: 0 14px;
+}
+
+.sm .option {
+  height: 30px;
+  padding: 0 12px;
+  font-size: 13px;
+}
+
+.active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+}

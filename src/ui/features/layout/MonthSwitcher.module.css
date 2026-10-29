@@ -1,0 +1,28 @@
+.switcher {
+  display: flex;
+  align-items: center;
+}
+
+.switcher button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.label {
+  min-width: 112px;
+  border: 0;
+  background: transparent;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text);
+  text-align: center;
+  padding: 6px 2px;
+  border-radius: var(--radius-sm);
+}
+
+@media (max-width: 380px) {
+  .label {
+    min-width: 96px;
+    font-size: 13px;
+  }
+}

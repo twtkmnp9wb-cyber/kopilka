@@ -1,0 +1,92 @@
+.card {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  background:
+    radial-gradient(120% 140% at 100% 0%, var(--accent-soft) 0%, transparent 55%), var(--surface);
+}
+
+.eyebrow {
+  color: var(--text-2);
+  font-size: 14px;
+  font-weight: 550;
+}
+
+.hero {
+  font-size: clamp(44px, 11vw, 60px);
+  line-height: 1.05;
+  font-weight: 750;
+  letter-spacing: -0.035em;
+  transition: color var(--dur) var(--ease-out);
+}
+
+.ok {
+  color: var(--text);
+}
+
+.tight {
+  color: var(--warning-text);
+}
+
+.over {
+  color: var(--danger-text);
+}
+
+.meter {
+  display: grid;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.meterLegend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.meterLegend b {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.state {
+  color: var(--text-2);
+}
+
+.caption {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.caption b {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.setupTitle {
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  max-width: 460px;
+}
+
+.setupText {
+  color: var(--muted);
+  max-width: 460px;
+}
+
+.setupActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
