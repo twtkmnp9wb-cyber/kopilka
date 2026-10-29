@@ -127,8 +127,17 @@ export const settingsSchema = z.object({
     .max(SETTINGS_LIMITS.forecastMonths.max),
 });
 
-export const credentialsSchema = z.object({
-  email: z.string().trim().email('Похоже, в почте опечатка'),
-  password: z.string().min(6, 'Пароль — минимум 6 символов').max(72, 'Слишком длинный пароль'),
-});
+const emailField = z.string().trim().email('Похоже, в почте опечатка');
+const passwordField = z
+  .string()
+  .min(6, 'Пароль — минимум 6 символов')
+  .max(72, 'Слишком длинный пароль');
+
+export const credentialsSchema = z.object({ email: emailField, password: passwordField });
 export type Credentials = z.infer<typeof credentialsSchema>;
+
+export const passwordResetSchema = z.object({ email: emailField });
+export type PasswordResetValues = z.infer<typeof passwordResetSchema>;
+
+export const newPasswordSchema = z.object({ password: passwordField });
+export type NewPasswordValues = z.infer<typeof newPasswordSchema>;

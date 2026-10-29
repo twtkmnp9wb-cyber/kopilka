@@ -26,6 +26,22 @@ export class DemoAuthService implements AuthService {
     throw new AppError('В демо-режиме регистрация не нужна', 'demo');
   }
 
+  onPasswordRecovery(): () => void {
+    return () => undefined;
+  }
+
+  takeLinkError(): null {
+    return null;
+  }
+
+  async requestPasswordReset(): Promise<never> {
+    throw new AppError('В демо-режиме пароля нет', 'demo');
+  }
+
+  async updatePassword(): Promise<never> {
+    throw new AppError('В демо-режиме пароля нет', 'demo');
+  }
+
   async signOut(): Promise<void> {
     this.session = null;
     this.onExit();

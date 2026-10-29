@@ -51,8 +51,19 @@ export interface AuthService {
   currentSession(): Promise<UserSession | null>;
   /** Подписка на вход/выход; возвращает функцию отписки. */
   onSessionChange(listener: (session: UserSession | null) => void): () => void;
+  /**
+   * Подписка на вход по ссылке «восстановить пароль» — пора попросить новый пароль.
+   * Если ссылку разобрали раньше, чем появился слушатель, он вызывается сразу.
+   */
+  onPasswordRecovery(listener: () => void): () => void;
+  /** Ошибка ссылки из письма (устарела, уже использована); отдаётся один раз. */
+  takeLinkError(): AppError | null;
   signIn(email: string, password: string): Promise<void>;
   signUp(email: string, password: string): Promise<SignUpResult>;
+  /** Письмо со ссылкой, которая впускает в аккаунт и предлагает задать новый пароль. */
+  requestPasswordReset(email: string): Promise<void>;
+  /** Новый пароль текущего пользователя. */
+  updatePassword(password: string): Promise<void>;
   signOut(): Promise<void>;
 }
 

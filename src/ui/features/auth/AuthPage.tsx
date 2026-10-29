@@ -9,9 +9,16 @@ import { Button } from '@/ui/shared/components/Button';
 import { Field, FormError, TextInput } from '@/ui/shared/components/Field';
 import { SegmentedControl } from '@/ui/shared/components/SegmentedControl';
 import { useContainer } from '@/ui/shared/container';
+import { PasswordResetForm } from './PasswordResetForm';
 import styles from './AuthPage.module.css';
 
 type Tab = 'sign-in' | 'sign-up';
+
+/** Письмо ушло: подтвердить почту после регистрации или войти по ссылке и сменить пароль. */
+interface SentLetter {
+  readonly email: string;
+  readonly reason: 'confirm' | 'reset';
+}
 
 export default function AuthPage() {
   const { auth } = useContainer();
@@ -19,11 +26,14 @@ export default function AuthPage() {
   const [params] = useSearchParams();
   const [tab, setTab] = useState<Tab>(params.get('tab') === 'sign-up' ? 'sign-up' : 'sign-in');
   const [formError, setFormError] = useState<string | null>(null);
-  const [sentTo, setSentTo] = useState<string | null>(null);
+  const [sent, setSent] = useState<SentLetter | null>(null);
+  /** Почта для формы «Забыл пароль»; null — форма закрыта. */
+  const [resetEmail, setResetEmail] = useState<string | null>(null);
 
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors, isSubmitting },
   } = useForm<Credentials>({
     resolver: zodResolver(credentialsSchema),
@@ -37,13 +47,20 @@ export default function AuthPage() {
         await auth.signIn(email, password);
       } else {
         const result = await auth.signUp(email, password);
-        if (result.status === 'confirm-email') setSentTo(email);
+        if (result.status === 'confirm-email') setSent({ email, reason: 'confirm' });
       }
     } catch (error) {
       if (error instanceof AppError && error.code === 'user-exists') setTab('sign-in');
       setFormError(error instanceof Error ? error.message : 'Не получилось — попробуй ещё раз');
     }
   });
+
+  const backToSignIn = () => {
+    setSent(null);
+    setResetEmail(null);
+    setFormError(null);
+    setTab('sign-in');
+  };
 
   return (
     <div className={styles.page}>
@@ -56,24 +73,35 @@ export default function AuthPage() {
           <PiggyBank size={30} />
         </div>
 
-        {sentTo ? (
+        {sent ? (
           <div className={styles.sent}>
             <MailCheck size={36} aria-hidden className={styles.sentIcon} />
             <h1>Проверь почту</h1>
-            <p>
-              Мы отправили письмо на <b>{sentTo}</b>. Перейди по ссылке из него — и сразу попадёшь в
-              Копилку.
-            </p>
-            <Button
-              variant="secondary"
-              onClick={() => {
-                setSentTo(null);
-                setTab('sign-in');
-              }}
-            >
-              Уже подтвердил — войти
+            {sent.reason === 'confirm' ? (
+              <p>
+                Мы отправили письмо на <b>{sent.email}</b>. Перейди по ссылке из него — и сразу
+                попадёшь в Копилку.
+              </p>
+            ) : (
+              <p>
+                Если аккаунт с почтой <b>{sent.email}</b> есть, туда придёт ссылка. Открой её на
+                любом устройстве — Копилка впустит тебя и попросит придумать новый пароль.
+              </p>
+            )}
+            <p className={styles.sentNote}>Письмо может идти пару минут — загляни и в «Спам».</p>
+            <Button variant="secondary" onClick={backToSignIn}>
+              {sent.reason === 'confirm' ? 'Уже подтвердил — войти' : 'Вернуться ко входу'}
             </Button>
           </div>
+        ) : resetEmail !== null ? (
+          <PasswordResetForm
+            defaultEmail={resetEmail}
+            onSent={(email) => {
+              setResetEmail(null);
+              setSent({ email, reason: 'reset' });
+            }}
+            onBack={backToSignIn}
+          />
         ) : (
           <>
             <h1 className={styles.title}>
@@ -122,6 +150,18 @@ export default function AuthPage() {
                   />
                 )}
               </Field>
+              {tab === 'sign-in' && (
+                <button
+                  type="button"
+                  className={styles.forgot}
+                  onClick={() => {
+                    setFormError(null);
+                    setResetEmail(getValues('email').trim());
+                  }}
+                >
+                  Забыл пароль?
+                </button>
+              )}
               <FormError>{formError}</FormError>
               <Button type="submit" size="lg" block loading={isSubmitting}>
                 {tab === 'sign-in' ? 'Войти' : 'Зарегистрироваться'}

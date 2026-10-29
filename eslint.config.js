@@ -29,6 +29,7 @@ export default tseslint.config(
             'usePeriod',
             'useMode',
             'useSession',
+            'usePasswordRecovery',
             'useToast',
             'useTransactionSheet',
             'categoryColorVar',

@@ -15,6 +15,7 @@ import { PageSkeleton } from '@/ui/shared/components/States';
 import { cx } from '@/ui/shared/lib/cx';
 import { useOnline } from '@/ui/shared/lib/hooks';
 import { PeriodProvider } from '@/ui/shared/period';
+import { PasswordRecoverySheet } from '../auth/PasswordRecoverySheet';
 import {
   TransactionSheetProvider,
   useTransactionSheet,
@@ -141,6 +142,8 @@ function Shell() {
         <NavItem {...NAV[2]} />
         <NavItem {...NAV[3]} />
       </nav>
+
+      <PasswordRecoverySheet />
     </div>
   );
 }

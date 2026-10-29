@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Archive, ArchiveRestore, LogOut, Plus } from 'lucide-react';
+import { Archive, ArchiveRestore, KeyRound, LogOut, Plus } from 'lucide-react';
 import { SETTINGS_LIMITS, formatMoney, type Category, type RecurringItem } from '@/domain';
 import { useMode } from '@/ui/app/mode';
 import { useSession } from '@/ui/app/session';
@@ -14,6 +14,7 @@ import { queryKeys, useFinanceMutation, useSnapshot } from '@/ui/shared/data/que
 import { cx } from '@/ui/shared/lib/cx';
 import { useTheme, type ThemeChoice } from '@/ui/shared/theme';
 import { useToast } from '@/ui/shared/toast/ToastProvider';
+import { NewPasswordForm } from '../auth/NewPasswordForm';
 import { CategoryForm } from './CategoryForm';
 import { RecurringForm } from './RecurringForm';
 import styles from './SettingsPage.module.css';
@@ -27,7 +28,19 @@ const THEMES: { value: ThemeChoice; label: string }[] = [
 type Editing =
   | { kind: 'recurring'; item?: RecurringItem }
   | { kind: 'category'; item?: Category; categoryKind: 'income' | 'expense' }
+  | { kind: 'password' }
   | null;
+
+function sheetTitle(editing: NonNullable<Editing>): string {
+  switch (editing.kind) {
+    case 'recurring':
+      return editing.item ? 'Регулярный платёж' : 'Новый регулярный платёж';
+    case 'category':
+      return editing.item ? 'Категория' : 'Новая категория';
+    case 'password':
+      return 'Новый пароль';
+  }
+}
 
 function CushionSetting({ value, forecastMonths }: { value: number; forecastMonths: number }) {
   const [draft, setDraft] = useState(value);
@@ -239,23 +252,26 @@ export default function SettingsPage() {
             ? 'Демо-режим: данные хранятся только в этом браузере и сотрутся при выходе.'
             : `Вход выполнен: ${session?.email ?? 'без почты'}`}
         </p>
-        <Button variant="secondary" icon={<LogOut size={18} />} onClick={() => void signOut()}>
-          {mode === 'demo' ? 'Выйти из демо' : 'Выйти'}
-        </Button>
+        <div className={styles.accountActions}>
+          {mode === 'cloud' && (
+            <Button
+              variant="secondary"
+              icon={<KeyRound size={18} />}
+              onClick={() => setEditing({ kind: 'password' })}
+            >
+              Сменить пароль
+            </Button>
+          )}
+          <Button variant="secondary" icon={<LogOut size={18} />} onClick={() => void signOut()}>
+            {mode === 'demo' ? 'Выйти из демо' : 'Выйти'}
+          </Button>
+        </div>
       </Card>
 
       <Sheet
         open={editing !== null}
         onClose={() => setEditing(null)}
-        title={
-          editing?.kind === 'recurring'
-            ? editing.item
-              ? 'Регулярный платёж'
-              : 'Новый регулярный платёж'
-            : editing?.item
-              ? 'Категория'
-              : 'Новая категория'
-        }
+        title={editing ? sheetTitle(editing) : ''}
       >
         {editing?.kind === 'recurring' && (
           <RecurringForm
@@ -271,6 +287,9 @@ export default function SettingsPage() {
             nextSort={snapshot.categories.length}
             onDone={() => setEditing(null)}
           />
+        )}
+        {editing?.kind === 'password' && (
+          <NewPasswordForm email={session?.email ?? null} onDone={() => setEditing(null)} />
         )}
       </Sheet>
     </div>

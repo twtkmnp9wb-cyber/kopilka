@@ -22,7 +22,7 @@ export function createCloudContainer(): AppContainer {
   const redirectTo = `${window.location.origin}${window.location.pathname}`;
   return {
     mode: 'cloud',
-    auth: new SupabaseAuthService(client, redirectTo),
+    auth: new SupabaseAuthService(client, redirectTo, window.location.hash),
     useCases: createUseCases(
       {
         transactions: new SupabaseCrudRepository(client, transactionMapping),

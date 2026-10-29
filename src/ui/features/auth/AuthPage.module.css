@@ -87,3 +87,23 @@
 .sentIcon {
   color: var(--accent-text);
 }
+
+.sentNote {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.forgot {
+  justify-self: end;
+  margin-top: -6px;
+  padding: 2px 0;
+  border: 0;
+  background: none;
+  color: var(--accent-text);
+  font-size: 14px;
+  font-weight: 550;
+}
+
+.forgot:hover {
+  text-decoration: underline;
+}

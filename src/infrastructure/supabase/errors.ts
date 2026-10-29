@@ -28,6 +28,9 @@ export function toAppError(error: unknown, fallback = 'Не удалось св�
   return new AppError(fallback, code || 'unknown', { cause: error });
 }
 
+export const USER_EXISTS_MESSAGE = 'Эта почта уже зарегистрирована — войди или восстанови пароль';
+
+// Проверяются по порядку против «код + текст» ошибки Supabase: частные случаи — выше общих.
 const AUTH_MESSAGES: ReadonlyArray<[RegExp, string, string]> = [
   [/invalid login credentials/i, 'Неверная почта или пароль', 'invalid-credentials'],
   [
@@ -36,12 +39,28 @@ const AUTH_MESSAGES: ReadonlyArray<[RegExp, string, string]> = [
     'email-not-confirmed',
   ],
   [
-    /already registered|already exists/i,
-    'Эта почта уже зарегистрирована — просто войди',
+    /already (been )?registered|already exists|user_already_exists|email_exists/i,
+    USER_EXISTS_MESSAGE,
     'user-exists',
   ],
   [
-    /rate limit|too many/i,
+    /same_password|should be different/i,
+    'Это твой текущий пароль — придумай другой',
+    'same-password',
+  ],
+  // Повторный запрос письма раньше минуты: код тот же, что у часового лимита, отличает текст.
+  [
+    /for security purposes/i,
+    'Письмо уже отправлено — новое можно запросить через минуту',
+    'email-cooldown',
+  ],
+  [
+    /email rate limit|over_email_send_rate_limit/i,
+    'Письма на этот час закончились — попробуй позже',
+    'email-rate-limit',
+  ],
+  [
+    /rate[ _]limit|too many/i,
     'Слишком много попыток — подожди немного и попробуй снова',
     'rate-limit',
   ],
@@ -50,13 +69,32 @@ const AUTH_MESSAGES: ReadonlyArray<[RegExp, string, string]> = [
     'Пароль слишком простой — минимум 6 символов',
     'weak-password',
   ],
+  [/reauthenticat/i, 'Для смены пароля войди заново', 'reauthentication-needed'],
+  [/session missing|session_not_found/i, 'Сессия истекла — войди заново', 'session-missing'],
   [/signups not allowed|signup is disabled/i, 'Регистрация сейчас закрыта', 'signup-disabled'],
 ];
 
-export function toAuthError(error: unknown): AppError {
-  const { message = '' } = (error ?? {}) as ErrorLike;
-  for (const [pattern, text, code] of AUTH_MESSAGES) {
-    if (pattern.test(message)) return new AppError(text, code, { cause: error });
+export function toAuthError(
+  error: unknown,
+  fallback = 'Не получилось войти — попробуй ещё раз',
+): AppError {
+  const { message = '', code = '' } = (error ?? {}) as ErrorLike;
+  const text = `${code} ${message}`;
+  for (const [pattern, userMessage, appCode] of AUTH_MESSAGES) {
+    if (pattern.test(text)) return new AppError(userMessage, appCode, { cause: error });
   }
-  return toAppError(error, 'Не получилось войти — попробуй ещё раз');
+  return toAppError(error, fallback);
+}
+
+/**
+ * Ошибка ссылки из письма. Supabase кладёт её во фрагмент адреса (#error_code=otp_expired&…),
+ * обычный маршрут вида #/settings ошибкой не считается.
+ */
+export function toLinkError(hash: string): AppError | null {
+  const params = new URLSearchParams(hash.replace(/^#/, ''));
+  const code = params.get('error_code') ?? params.get('error');
+  if (!code) return null;
+  return code === 'otp_expired'
+    ? new AppError('Ссылка из письма устарела или уже использована — запроси новую', 'link-expired')
+    : new AppError('Не получилось войти по ссылке из письма — попробуй ещё раз', 'link-failed');
 }

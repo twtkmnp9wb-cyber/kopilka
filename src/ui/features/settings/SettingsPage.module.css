@@ -110,3 +110,9 @@
   color: var(--text-2);
   margin-bottom: 14px;
 }
+
+.accountActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
